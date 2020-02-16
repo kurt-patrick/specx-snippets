@@ -17,13 +17,19 @@ function AttributeDescriptionEditor(props) {
                 <input name="name" autoComplete="off" placeholder="Enter attribute name" style={{width:"100%"}}
                     value={settings.name} onChange={(e) => props.updateState(e.target.name, e.target.value)} />
             </div>
-            <div className="form-inline pb-2">
+
+            <div className="form-inline">
                 <label className="form-label pr-2" htmlFor="type">Type</label>
                 <AttributeDescriptionTypeSelector handleChange={(value) => props.updateState("type", value)} value={settings.type} />
             </div>
 
+            <div className="form-check pt-2" hidden={!settings.showOffset}>
+                <input name="isOffset" className="form-check-input" type="checkbox" 
+                    checked={settings.isOffset || false} onChange={(e) => props.updateState(e.target.name, e.target.checked)} />
+                <label className="form-check-label" htmlFor="isOffset">Is an offset attribute</label>
+            </div>
 
-            <div className="pb-2">
+            <div className="pt-2" hidden={!settings.showRegex}>
                 <div>Regex</div>
 
                 <div className="form-inline pt-2" hidden={settings.hasLookForward}>
@@ -68,16 +74,13 @@ function AttributeDescriptionEditor(props) {
 
             </div>
 
-
-            <br />
-
-            <div className="form-check pt-2">
-                <input name="isOffset" className="form-check-input" type="checkbox" 
-                    checked={settings.isOffset || false} onChange={(e) => props.updateState(e.target.name, e.target.checked)} />
-                <label className="form-check-label" htmlFor="isOffset">Is an offset attribute</label>
+            <div className="pt-2" hidden={!settings.showReference}>
+                <div>Reference</div>
+                <div className="form-inline pb-2">
+                    <input name="referenceName" autoComplete="off" placeholder="Enter reference name" style={{width:"100%"}}
+                        value={settings.referenceName} onChange={(e) => props.updateState(e.target.name, e.target.value)} />
+                </div>
             </div>
-            <br />
-            
             
             </div>
             }
